@@ -1,4 +1,4 @@
-# Auto Street Mapper V3 — Prototype
+# Auto Street Mapper V4 — Prototype
 Arabic RTL progressive web app for outlining a neighborhood, selecting a start point, fetching OpenStreetMap roads and assigning sequential labels. Roads at/above the chosen threshold get two independently numbered markers at approximate quarter/three-quarter positions.
 
 

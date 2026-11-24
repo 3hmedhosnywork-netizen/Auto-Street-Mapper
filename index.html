@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101828"><meta name="description" content="ترقيم الشوارع تلقائيًا داخل الأحياء">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="assets/brand.svg">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css"><title>مخطّط الشوارع | Auto Street Mapper</title>
+</head><body>
+<div class="app-shell">
+<header class="topbar"><div class="brand"><img src="assets/brand.svg" alt=""><div><strong>مخطّط الشوارع</strong><small>Auto Street Mapper <span class="version-tag">V3</span></small></div></div><button id="helpBtn" class="icon-btn" aria-label="مساعدة">؟</button></header>
+<main>
+<section class="intro"><span class="eyebrow">أداة ترقيم ميدانية</span><h1>رتّب الحيّ، <em>والترقيم علينا.</em></h1><p>حدد حدود الحي ونقطة البداية، وسيتم اكتشاف الشوارع وترقيمها تلقائيًا.</p></section>
+<section class="map-card"><div class="map-head"><div><b>الخريطة</b><small id="mapHint">حرّك الخريطة إلى الحي المطلوب</small></div><button class="pill" id="locateBtn">⌖ موقعي</button></div><div id="map"></div><div class="map-legend"><span><i class="dot boundary"></i> حدود الحي</span><span><i class="dot start"></i> نقطة البداية</span><span><i class="dot marker"></i> دبوث الترقيم</span></div></section>
+<section class="setup-card"><div class="section-title"><span class="step">01</span><div><h2>إعداد الحي</h2><p>اختر الاسم والحرف وطريقة التقسيم</p></div></div>
+<div class="fields"><label>اسم الحي<input id="districtName" placeholder="مثال: حي السلام" maxlength="50"></label><label>حرف الترقيم<input id="prefix" placeholder="M" maxlength="4" value="M" autocapitalize="characters"></label></div>
+<div class="split-setting"><div><b>تقسيم الشوارع الطويلة</b><small>أي شارع يتجاوز الطول المحدد سيتم تقسيمه إلى دبوثين منفصلين برقمين مختلفين.</small></div><label class="threshold"><span>الحد بالمتر</span><input id="threshold" type="number" min="100" step="50" value="500"></label></div>
+<div class="step-actions"><button id="drawBtn" class="secondary">⌑ رسم حدود الحي</button><button id="clearBtn" class="secondary light">مسح الرسم</button></div><div class="notice" id="status">اضغط «رسم حدود الحي» ثم انقر على الخريطة لتحديد نقاط الحدود، واضغط إنهاء الرسم.</div><button id="finishBoundary" class="outline" disabled>✓ إنهاء الحدود</button>
+<div class="step-actions"><button id="startPointBtn" class="secondary">◉ تحديد نقطة البداية</button><button id="clearStartBtn" class="secondary light">مسح نقطة البداية</button></div><div class="notice" id="startStatus">بعد رسم الحدود، حدد نقطة البداية على الخريطة.</div>
+<button id="runBtn" class="primary" disabled>اكتشاف الشوارع وترقيمها <span>←</span></button></section>
+<section id="resultsCard" class="results-card hidden"><div class="results-head"><div><span class="eyebrow">النتائج</span><h2>خريطة الترقيم</h2></div><span class="count" id="resultCount">0</span></div><p id="resultsSummary"></p><div class="export-actions"><button id="csvBtn" class="secondary">تنزيل CSV</button><button id="geoBtn" class="secondary">تنزيل GeoJSON</button></div><div id="streetList" class="street-list"></div></section>
+<section class="bottom-note"><span class="note-icon">i</span><p>تُستخدم بيانات الطرق المفتوحة من OpenStreetMap. راجع النتائج على الخريطة قبل اعتماد الترقيم النهائي.</p></section>
+</main><footer>Auto Street Mapper <span>V3 · نسخة تجريبية</span></footer></div>
+<div id="modal" class="modal hidden"><div class="modal-box"><h3>طريقة الاستخدام</h3><ol><li>اكتب اسم الحي وحرفه.</li><li>ارسم حدود الحي بالنقر على الخريطة، ثم أنهِ الرسم.</li><li>حدد نقطة البداية بالنقر على الخريطة.</li><li>اضغط اكتشاف الشوارع والترقيم.</li><li>الشوارع الطويلة تُقسّم إلى جزأين، لكل جزء رقم مستقل.</li></ol><button id="closeHelp" class="primary">تمام</button></div></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="app.js"></script></body></html>
